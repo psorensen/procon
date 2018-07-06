@@ -5,13 +5,13 @@ class List extends React.Component {
     return (
       <div className="list">
         <div className="pros">
-          {this.props.data.pros.map((pro, index) => {
-            return <h3 key={index}>{pro}</h3>;
+          {this.props.data.pro.map((pro, index) => {
+            return <h3 key={index} className="list-item-pro">{pro}</h3>;
           })}
         </div>
         <div className="cons">
-          {this.props.data.cons.map((con, index) => {
-            return <h3 key={index}>{con}</h3>;
+          {this.props.data.con.map((con, index) => {
+            return <h3 key={index} className="list-item-con">{con}</h3>;
           })}
         </div>
       </div>

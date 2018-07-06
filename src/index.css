@@ -8,3 +8,18 @@ body {
   display: grid;
   grid-template-columns: auto auto;
 }
+
+input[type="text"].con {
+  background: red;
+}
+
+input[type="text"].pro {
+  background: green;
+}
+
+.list-item-pro {
+  color: green;
+}
+.list-item-con {
+  color: red;
+}

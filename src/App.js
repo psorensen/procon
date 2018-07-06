@@ -8,34 +8,52 @@ class App extends Component {
   // Set initial state.
   state = {
     inputVal: "",
+    inputType: "",
     data: {
-      pros: [],
-      cons: []
+      pro: [],
+      con: []
     }
   };
 
   // Add a list item.
   addListItem = item => {
     const items = { ...this.state.data };
-
-    items.pros.push(item);
-    this.setState({ data: items });
-    this.setState({ inputVal: "" });
+    const type = this.state.inputType.trim();
+    console.log(type);
+    if (this.state.inputType) {
+      items[type].push(item);
+      this.setState({ data: items, inputVal: "", inputType: "" });
+    }
   };
 
   onChangeInput = e => {
-    const inputVal = { ...this.state.inputVal };
+    let inputValue = { ...this.state.inputVal };
+    inputValue = e;
+    this.setState({ inputVal: inputValue });
   };
+
+  updateType = type => {
+    let inputType = { ...this.state.inputType };
+
+    if ('pro' === type) {
+      inputType = 'pro';
+      this.setState({ inputType, inputVal: "" });
+    } else if ('con' === type) {
+      inputType = 'con';
+      this.setState({ inputType, inputVal: "" });
+    }
+  }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
           <AddItem
+            type={this.state.inputType}
             addListItem={this.addListItem}
             inputVal={this.state.inputVal}
+            onChangeInput={this.onChangeInput}
+            updateType={this.updateType}
           />
         </header>
         <List data={this.state.data} />

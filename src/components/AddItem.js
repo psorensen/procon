@@ -8,19 +8,23 @@ class AddItem extends React.Component {
   }
   myref = React.createRef();
   handleOnChange(e) {
-    console.log(e.target.value);
-    this.setState({ inputVal: e.target.value });
+    const val = e.target.value;
+    this.props.onChangeInput(val);
   }
   handleKeyPress(e) {
+    const val = this.myref.current.value;
     if (e.key === "Enter") {
-      const val = this.myref.current.value;
       this.props.addListItem(val);
+    }
+    if (e.key === " ") {
+      this.props.updateType(val);
     }
   }
   render() {
     return (
       <React.Fragment>
         <input
+          className={this.props.type}
           ref={this.myref}
           value={this.props.inputVal}
           onChange={this.handleOnChange}
